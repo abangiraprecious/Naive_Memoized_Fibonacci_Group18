@@ -39,3 +39,25 @@ for i in range(21):
     assert fib_A(i) == fib_B(i), f"Mismatch at n={i}"
 
 print("Verification passed.\n")
+n_values_A = [5, 10, 15, 20, 25, 30, 35]
+results_A = []
+
+print("Algorithm A Results")
+print(f"{'n':<5} | {'calls':<15} | {'time (s)'}")
+print("-" * 35)
+
+for n in n_values_A:
+    counter_A = 0
+
+    start_time = time.perf_counter()
+    fib_A(n)
+    end_time = time.perf_counter()
+
+    duration = end_time - start_time
+
+    results_A.append((n, counter_A, duration))
+    print(f"{n:<5} | {counter_A:<15} | {duration:.6f}")
+
+    if duration > 60:
+        print(f"Algorithm A exceeded 60 seconds at n={n}.")
+        break
