@@ -61,3 +61,27 @@ for n in n_values_A:
     if duration > 60:
         print(f"Algorithm A exceeded 60 seconds at n={n}.")
         break
+n_values_B = [10, 50, 100, 200, 500, 1000]
+results_B = []
+
+print("\nAlgorithm B Results")
+print(f"{'n':<5} | {'calls':<15} | {'time (s)'}")
+print("-" * 35)
+
+for n in n_values_B:
+    counter_B = 0
+    fibtable.clear()
+
+    start_time = time.perf_counter()
+
+    try:
+        fib_B(n)
+    except RecursionError:
+        print(f"{n:<5} | RECURSION LIMIT HIT")
+        continue
+
+    end_time = time.perf_counter()
+    duration = end_time - start_time
+
+    results_B.append((n, counter_B, duration))
+    print(f"{n:<5} | {counter_B:<15} | {duration:.6f}")
