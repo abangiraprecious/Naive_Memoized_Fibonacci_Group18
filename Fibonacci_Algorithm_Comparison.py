@@ -108,3 +108,42 @@ if results_A and results_B:
     plt.show()
 else:
     print("Unable to plot because one or both result lists are empty.")
+print("\nPushing to n=1000")
+
+print("Default recursion limit:", sys.getrecursionlimit())
+
+fibtable.clear()
+counter_B = 0
+
+try:
+    result = fib_B(1000)
+    print(f"Default settings output for n=1000: {result}")
+except RecursionError:
+    print("Default settings: RecursionError occurred.")
+
+sys.setrecursionlimit(2000)
+
+fibtable.clear()
+counter_B = 0
+
+try:
+    result = fib_B(1000)
+    print(f"Fix 1 (Recursion Limit) Output for n=1000: {result}")
+except RecursionError:
+    print("Fix 1: RecursionError still occurred.")
+
+
+def fib_iterative(n):
+    if n == 0 or n == 1:
+        return n
+
+    table = [0] * (n + 1)
+    table[1] = 1
+
+    for i in range(2, n + 1):
+        table[i] = table[i - 1] + table[i - 2]
+
+    return table[n]
+
+
+print(f"Fix 2 (Iterative) Output for n=1000: {fib_iterative(1000)}")
